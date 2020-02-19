@@ -5,11 +5,12 @@ ENV GRASSLANG_VERSION w.W.v
 ENV GRASSLANG_PATH /usr/bin/grass
 ENV GRASSLANG_DIR /usr/local/grass
 
-RUN apk update --no-cache
-
 WORKDIR ${GRASSLANG_DIR}
 
 ADD grass ${GRASSLANG_PATH}
 ADD *.java ${GRASSLANG_DIR}
+
+RUN apk update --no-cache && \
+    chmod 755 ${GRASSLANG_PATH}
 
 ENV PATH ${PATH}:${GRASSLANG_PATH}

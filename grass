@@ -5,7 +5,7 @@ HELP_MSG="You can get help by specifying '$PROGRAMNAME -h'"
 
 # ヘルプメッセージ関数
 usage() {
-  echo "Usage: $0 [-opt] file1 file2 ..."
+  echo "Usage: grass [-opt] file1 file2 ..."
   echo 
   echo "Options:"
   echo "  -h, --help"
@@ -14,17 +14,13 @@ usage() {
   exit 1
 }
 
-# 準備関数
-prepare() {
-  javac -encoding UTF-8 ${GRASSLANG_DIR}/Grass.java
-}
-
 # 実行関数
 run() {
-  java -classpath ${GRASSLANG_DIR} Grass $1
+  javac -encoding UTF-8 "$GRASSLANG_DIR/Grass.java"
+  java -classpath "$GRASSLANG_DIR" Grass $1
 }
 
-params=()
+param=
 
 # オプション解析
 for OPT in "$@"
@@ -37,23 +33,23 @@ do
       ;;
     # バージョンメッセージ
     '-v'|'--version' )
-      echo "grass version $VERSION"
+      echo "grass version $GRASSLANG_VERSION"
       exit 1
       ;;
     # 「-」か「--」だけ打った時
     '--'|'-' )
       shift 1
-      params+=("$@")
+      usage
       break
       ;;
     -* )
-      echo "$PROGRAMNAME: 「$(echo $1 | sed 's/^-*//')」option does not exist. Please check with '$PROGRAMNAME -h'." 1>&2
+      echo "$PROGRAMNAME: '$(echo $1 | sed 's/^-*//')' option does not exist. Please check with '$PROGRAMNAME -h'." 1>&2
       exit 1
       ;;
     * )
       # コマンド引数（オプション以外のパラメータ）
-      if [[ ! -z "$1" ]] && [[ ! "$1" =~ ^-+ ]]; then
-        params+=("$1")
+      if [ ! -z "$1" ]; then
+        param="$1"
         shift 1
       fi
       ;;
@@ -61,17 +57,14 @@ do
 done
 
 # 実行部分
-for param in "$params"
-do
-  if [ ! ${param##*.} = grass ]; then
-    echo "Specify a Grass file as the file to be executed."
-    exit 1
-  fi
-done
+if [ -z ${param} ]; then
+  echo "There is no file to execute."
+  exit 1
+fi
 
-prepare
+if [ ! ${param##*.} = grass ]; then
+  echo "Specify a Grass file as the file to be executed."
+  exit 1
+fi
 
-for param in "$params"
-do
-  run $param
-done
+run $param
