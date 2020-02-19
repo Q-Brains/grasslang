@@ -2,12 +2,14 @@ FROM openjdk:15-jdk-alpine
 
 ENV LANG C.UTF-8
 ENV GRASSLANG_VERSION w.W.v
-ENV WORK_DIR /usr/local/grass
+ENV GRASSLANG_PATH /usr/bin/grass
+ENV GRASSLANG_DIR /usr/local/grass
 
 RUN apk update --no-cache
 
-WORKDIR ${WORK_DIR}
+WORKDIR ${GRASSLANG_DIR}
 
-ADD . ${WORK_DIR}
+ADD grass ${GRASSLANG_PATH}
+ADD *.java ${GRASSLANG_DIR}
 
-ENV PATH /bin/grass:${PATH}
+ENV PATH ${PATH}:${GRASSLANG_PATH}
