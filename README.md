@@ -18,14 +18,14 @@ Dockerize that very famous programming language, grasslang.
 ### Run
 
 ```command-line
-docker run -it qbrains/gphotos-auth:latest bash
+docker run -it qbrains/grasslang:latest bash
 ```
 
 ### `grass` command
 
 The `grass` command is for execute Grass file.  
 Grass files must have the extension `.grass` or `.www`.  
-Here is an example of using the `grass` command available in the container.
+Here is an example of using the `grass` command available in the container.  
 
 ```command-line
 grass index.grass
@@ -37,4 +37,4 @@ grass hoge.www
 
 ## What is grasslang?
 
-See [here](http://www.blue.sky.or.jp/grass/).
+See [here](http://www.blue.sky.or.jp/grass/).  
