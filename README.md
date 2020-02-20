@@ -18,7 +18,7 @@ Dockerize that very famous programming language, grasslang.
 ### Run
 
 ```command-line
-docker run -it qbrains/gphotos-auth:latest bash
+docker run -it qbrains/grasslang:latest bash
 ```
 
 ### `grass` command

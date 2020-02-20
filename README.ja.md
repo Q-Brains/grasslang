@@ -16,7 +16,7 @@
 ### 起動
 
 ```command-line
-docker run -it qbrains/gphotos-auth:latest bash
+docker run -it qbrains/grasslang:latest bash
 ```
 
 ### `grass` コマンド
