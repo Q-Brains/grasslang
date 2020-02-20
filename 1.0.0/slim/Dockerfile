@@ -70,7 +70,7 @@ RUN apt-get update && \
     echo '    exit 1'; \
     echo '  fi'; \
     echo '  '; \
-    echo '  if [ ! ${param##*.} = grass ]; then'; \
+    echo '  if [ ! ${param##*.} = grass ] && [ ! ${param##*.} = www ]; then'; \
     echo '    echo \"Specify a Grass file as the file to be executed.\"'; \
     echo '    exit 1'; \
     echo '  fi'; \
