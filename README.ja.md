@@ -23,7 +23,7 @@ docker run -it qbrains/grasslang:latest bash
 
 `grass` コマンドは Grassファイル を実行するためのコマンドです。  
 Grassファイル は拡張子が `.grass` または `.www` でなければいけません。  
-以下はコンテナ内で利用できる `grass` コマンドの使用例です。
+以下はコンテナ内で利用できる `grass` コマンドの使用例です。  
 
 ```command-line
 grass index.grass
@@ -35,4 +35,4 @@ grass hoge.www
 
 ## grasslangとは
 
-[ちょっと草植えときますね型言語 Grass](http://www.blue.sky.or.jp/grass/doc_ja.html) を参照。
+[ちょっと草植えときますね型言語 Grass](http://www.blue.sky.or.jp/grass/doc_ja.html) を参照。  
